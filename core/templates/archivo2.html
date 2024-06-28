@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Gati Gourmet</title>
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}"> 
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" />
+</head>
+<body>
+    <div class="sobre-nosotros">
+        <img src="{% static 'img/imagen3.jpg' %}" alt="Fondo">
+        <div class="texto-encima">
+        <h5><b>Sobre Nosotros</b></h5>
+        <h7>Nuestra misión en Gati Gourmet es contribuir a un estilo de vida saludable y sostenible ya que nuestras mermeladas están elaboradas con ingredientes frescos y naturales de la mejor calidad y logran deleitar el paladar de los clientes. <br>
+        En Gati Gourmet nos esforzamos por ser líderes en el mercado de mermeladas artesanales, ofreciendo sabores únicos que reflejan nuestra pasión por la autenticidad, la calidad y novedad. Nos esforzamos por ser un catalizador para un cambio positivo en nuestras comunidades promoviendo prácticas sostenibles y apoyando a los productores locales. </h7>
+        </div>
+    <br>
+    <br>
+    <div class="video-responsive">
+        <iframe width="600" height="400" src="https://www.youtube.com/embed/aF2iFQu6kFc" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
+    <br><br>
+</body>
+</html>
+{% endblock %}

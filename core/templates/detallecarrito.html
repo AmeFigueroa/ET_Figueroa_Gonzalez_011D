@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Productos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9f7ef;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h3 {
+            color: #28a745;
+        }
+        h6 {
+            color: #6c757d;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .table th {
+            background-color: #ff9800;
+            color: white;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(255, 152, 0, 0.1);
+        }
+        .table-striped tbody tr:nth-of-type(even) {
+            background-color: rgba(255, 152, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Detalle de Compra</h3>
+        <h6>Fecha: {{ fecha }}</h6>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Código Boleta</th>
+                    <th>Código Producto</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in productos %}
+                <tr>
+                    <td>{{ prod.id_boleta }}</td>
+                    <td>{{ prod.id_producto }}</td>
+                    <td>{{ prod.cantidad }}</td>
+                    <td>{{ prod.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-right"><h6>Total Compra: {{ total }}</h6></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

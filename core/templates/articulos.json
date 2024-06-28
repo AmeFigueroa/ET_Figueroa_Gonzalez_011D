@@ -1,0 +1,82 @@
+{ 
+    "productos":[ 
+        {
+            "id":"1",
+            "nombre":"Promoción Mermeladas",
+            "tipo":"Promocion",
+            "picante":"No"
+        },
+        {
+            "id":"2",
+            "nombre":"Mermelada Frutos Rojos",
+            "tipo":"Mermelada",
+            "picante":"No"
+        },
+        {
+            "id":"3",
+            "nombre":"Mermelada Naranja",
+            "tipo":"Mermelada",
+            "picante":"No"
+        },
+        {
+            "id":"4",
+            "nombre":"Mermelada Mango Piña",
+            "tipo":"Mermelada",
+            "picante":"No"
+        },
+        {
+            "id":"5",
+            "nombre":"Mermelada Uvas al Vino Tinto",
+            "tipo":"Mermelada",
+            "picante":"No"
+        },
+        {
+            "id":"6",
+            "nombre":"Mermelada Cebolla Morada",
+            "tipo":"Mermelada",
+            "picante":"No"
+        },
+        {
+            "id":"7",
+            "nombre":"Mermelada Rocoto",
+            "tipo":"Mermelada",
+            "picante":"Sí"
+        },
+        {
+            "id":"8",
+            "nombre":"Postre Peras al Vino",
+            "tipo":"Postre",
+            "picante":"No"
+        },
+        {
+            "id":"9",
+            "nombre":"Chutney Pimentón con Rocoto",
+            "tipo":"Chutney",
+            "picante":"Sí"
+        },
+        {
+            "id":"10",
+            "nombre":"Pasta de Alcachofa",
+            "tipo":"Pasta",
+            "picante":"No"
+        },
+        {
+            "id":"11",
+            "nombre":"Ajo Rostizado",
+            "tipo":"Ajo",
+            "picante":"No"
+        },
+        {
+            "id":"12",
+            "nombre":"Sal Rosada",
+            "tipo":"Sal",
+            "picante":"No"
+        },
+        {
+            "id":"13",
+            "nombre":"Sal Rosada Ajo Cebolla",
+            "tipo":"Sal",
+            "picante":"No"
+        }
+    ]
+}
