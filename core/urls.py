@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import home, form_producto, eliminar, mostrar, modificar, receta, inicio, nosotros, iniciosesion, listadoproducto, registrar, generarBoleta, agregar_producto, restar_producto, limpiar_carrito, crear, tienda, salir, productos
+from .views import home, form_producto, eliminar, total_compra, mostrar, modificar, receta, inicio, nosotros, iniciosesion, listadoproducto, registrar, generarBoleta, agregar_producto, restar_producto, limpiar_carrito, crear, tienda, salir, productos
 
 urlpatterns = [
     path('home/', home, name='home'),
@@ -23,4 +23,7 @@ urlpatterns = [
     path('restar/<id>/', restar_producto, name='restar'),
     path('limpiar/', limpiar_carrito, name='limpiar'),
     path('modificar/<id>/', modificar, name='modificar'),
+
+    path('total_compra/', total_compra, name= 'total_compra'),
+ 
 ]

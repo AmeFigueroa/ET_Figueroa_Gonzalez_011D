@@ -49,7 +49,13 @@
             </div>
       </nav>
     </div>
+    <br><br><br>
     <div class="container">
+        <form method="GET" action="{% url 'mostrar' %}" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos" aria-label="Buscar" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <br><br>
         <div class="row">
             {% for prod in productitos %}
             <div class="col-3">
@@ -68,13 +74,40 @@
                         </p>
                         <a href="{% url 'iniciosesion' %}" class="btn btn-warning">Agregar</a>
                         <a href="{% url 'inicio' %}" class="btn btn-success">Inicio</a>
-                      
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+        <!-- Paginación -->
+        {% if productitos.has_other_pages %}
+        <div class="col-12">
+            <ul class="pagination justify-content-center">
+                {% if productitos.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productitos.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" aria-label="Anterior">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for num in productitos.paginator.page_range %}
+                <li class="page-item {% if productitos.number == num %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                {% if productitos.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productitos.next_page_number }}{% if query %}&q={{ query }}{% endif %}" aria-label="Siguiente">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    
     <footer class="pie-pagina">
         <div class="grupo-1">
             <div class="box">

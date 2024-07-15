@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +13,8 @@
 </head>
 <body>
     <div class="head">
-
         <div class="logo">
             <a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
-
         </div>
         <nav class="navbar">
             {% if user.is_authenticated %}
@@ -44,25 +41,33 @@
             {% endif %}
             <div>
                 {% if user.is_authenticated %}
-                <a href="{% url 'salir' %}">Cerrar sesión</a>
+                    <a href="{% url 'salir' %}">Cerrar sesión</a>
                 {% else %} 
-                <a href="{% url 'iniciosesion' %}" >Iniciar sesión</a>
+                    <a href="{% url 'iniciosesion' %}" >Iniciar sesión</a>
                 {% endif %}
             </div>
-      </nav>
+        </nav>
     </div>
 
+    <br><br><br>
     <div class="container">
+        <form method="GET" action="{% url 'tienda' %}" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos" aria-label="Buscar" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form> <!--formulario de busqueda de productos-->
+        <br><br>
+        <a href="{% url 'total_compra' %}" class="btn-flotante">Total de<br>boletas</a>
         <div class="row">
-            {% for prod in productitos %}
-            <div class="col-3">
+            {% for prod in productitos %} <!--for para recorrer los productos y mostrar cada uno-->
+            <div class="col-4">
                 <div class="card text-center">
-                    {% if prod.imagen %}
+                    {% if prod.imagen %} <!--mostrar la imagen del producto o una imagen default por si no hay-->
                         <img src="{{ prod.imagen.url }}" class="card-img-top mx-auto">
                     {% else %}
                         <img src="{% static 'img/sinfoto.webp' %}" class="card-img-top mx-auto">
                     {% endif %}
                     <div class="card-body">
+                        <!--mostramos los detalles del producto: -->
                         <h2 class="card-title"> Código : {{ prod.idProducto }}</h2>
                         <p class="card-text">
                             {{ prod.nombreProducto }}<br><br>
@@ -75,10 +80,39 @@
             </div>
             {% endfor %}
         </div>
+
+        {% if productitos.has_other_pages %} <!--verifica si hay mas de una pagina de resultados-->
+        <div class="col-12">
+            <ul class="pagination justify-content-center">
+                {% if productitos.has_previous %} <!--comprueba si hay una pagina anterior disponible en los resultados-->
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productitos.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" aria-label="Anterior">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for num in productitos.paginator.page_range %} <!--for para recorrer las paginas disponibles del paginator creado-->
+                <li class="page-item {% if productitos.number == num %}active{% endif %}"> <!--se selecciona la pagina actual con la clase active-->
+                    <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                {% if productitos.has_next %} <!--condicion que comprueba si hay una pagina disponible en los resultados-->
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productitos.next_page_number }}{% if query %}&q={{ query }}{% endif %}" aria-label="Siguiente"> <!--enlace qu elleva a la pagina siguiente de resutlados-->
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
         <div class="col-4">
             {% include "carrito.html" %}
         </div>
+
     </div>
+
     <footer class="pie-pagina">
         <div class="grupo-1">
             <div class="box">
@@ -89,18 +123,18 @@
                 </figure>
             </div>
             <div class="box">
-              <h2>SIGUENOS</h2>
-              <div class="red-social">
-                  <a href="https://web.facebook.com/profile.php?id=100063534971102&locale=es_LA"><img src="{% static 'img/facebook.png' %}" alt= "Facebook"></a>
-                  <a href="https://www.instagram.com/gatigourmet/?hl=es-la"><img src="{% static 'img/instagram.png' %}" alt= "Instagram"></a>
-                  <a href="https://wa.me/c/56982181412"><img src="{% static 'img/whatsapp.png' %}" alt="Whatsapp"></a>
-              </div>
-          </div>
-      </div>
-      <div class="grupo-2">
-          <small>&copy; 2024 <b>Gati Gourmet</b> - Todos los Derechos Reservados.</small>
-      </div>
-      </footer>
+                <h2>SIGUENOS</h2>
+                <div class="red-social">
+                    <a href="https://web.facebook.com/profile.php?id=100063534971102&locale=es_LA"><img src="{% static 'img/facebook.png' %}" alt= "Facebook"></a>
+                    <a href="https://www.instagram.com/gatigourmet/?hl=es-la"><img src="{% static 'img/instagram.png' %}" alt= "Instagram"></a>
+                    <a href="https://wa.me/c/56982181412"><img src="{% static 'img/whatsapp.png' %}" alt="Whatsapp"></a>
+                </div>
+            </div>
+        </div>
+        <div class="grupo-2">
+            <small>&copy; 2024 <b>Gati Gourmet</b> - Todos los Derechos Reservados.</small>
+        </div>
+    </footer>
+
 </body>
 </html>
-

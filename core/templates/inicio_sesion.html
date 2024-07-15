@@ -44,7 +44,13 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-block text-center my-3 btn-primary">Iniciar sesión</button>
+            <div class="d-flex align-items-start">
+                <div class="remember"> <label class="option text-muted"> Recordar mis datos <input type="radio" name="radio"> <span class="checkmark"></span> </label> </div>
+                <div class="ml-auto"> <a href="{% url 'password_reset' %}" id="olvidoContraseña">¿Olvidaste tu contraseña?</a> </div>
+            </div>
+            </div>
             <div class="text-center pt-3 text-muted">¿No eres miembro? <a href="{% url 'registrar' %}">Regístrate</a></div>
+            
         </form>
     </div>
 

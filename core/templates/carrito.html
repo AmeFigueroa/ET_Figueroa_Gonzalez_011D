@@ -10,7 +10,7 @@
             {% if request.session.carrito.items %}
                 {% for key, value in request.session.carrito.items %} 
                     <tr>
-                        <td style="font-size:13px">{{ value.nombreProducto }}</td>
+                        <td style="font-size:13px">{{ value.nombre }}</td>
                         <td style="font-size:13px">{{ value.precio }}</td>
                         <td style="font-size:13px">{{ value.cantidad}}
                             <br>

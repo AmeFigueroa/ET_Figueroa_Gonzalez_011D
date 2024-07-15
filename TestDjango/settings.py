@@ -27,10 +27,17 @@ SECRET_KEY = 'django-insecure-+9vk1jjdkpic69ijrnyet_3(umfe(n2hicomzg=lvrhthltr$1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+#"Simple Mail Transfer Protocol" utilizado para el envío de correos electrónicos entre servidores de correo.
 ALLOWED_HOSTS = []
-
-
-
+#configuración del backend de correo electrónico para SMTP en Django
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'#configuración del servidor SMTP de Gmail
+EMAIL_PORT = 587 #puerto utilizado para la conexión SMTP con TLS (Gmail utiliza el puerto 587)
+EMAIL_USE_TLS = True #habilitar TLS (Transport Layer Security) para una conexión segura
+EMAIL_HOST_USER = "valenavg12@gmail.com" #Dirección de correo electrónico del usuario para autenticación en el servidor SMTP (Gmail)
+EMAIL_HOST_PASSWORD = "ycte qmuj ummg jyov" #contraseña de la cuenta de correo electrónico del usuario
+DEFAULT_FROM_EMAIL = 'valenavg12@gmail.com' #correo electrónico predeterminada que se utilizará como remitente para todos los correos electrónicos enviados desde la aplicación
 # Application definition
 
 INSTALLED_APPS = [
@@ -90,6 +97,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
+#Configuración de validadores de contraseñas para mejorar la seguridad en Django
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -121,13 +129,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'core/static'), )
-
-STATICFILES_DIR=[
-    BASE_DIR /'static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core/static'),
 ]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -138,3 +145,4 @@ MEDIA_ROOT = BASE_DIR / "files"
 
 LOGIN_REDIRECT_URL="/"
 LOGOUT_REDIRECT_URL="/" 
+LOGIN_URL = 'iniciosesion'

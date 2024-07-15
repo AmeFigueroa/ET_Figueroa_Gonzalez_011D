@@ -68,8 +68,8 @@ body {
 
 .video-responsive {
   margin: 0 auto;
-  width: 600px; /* Ancho del cuadro del video */
-  max-width: 100%; /* Para asegurar que el cuadro del video no sea más ancho que su contenedor */
+  width: 600px; 
+  max-width: 100%;
 }
 
 .video-responsive iframe {

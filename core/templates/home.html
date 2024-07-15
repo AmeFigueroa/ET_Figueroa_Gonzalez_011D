@@ -1,4 +1,3 @@
-
 {% load static%}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,38 +8,15 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <title>Productos</title>
-    <style>
-    .table-container {
-        max-height: 1200px;
-        overflow-y:auto;
-        margin-top: 200px;
-    }
 
-    .table td,
-    .table th {
-        max-width: 190px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .table img {
-            width: 50px;
-            height: 50px;
-        }
-
-        .btn {
-            margin: 1px;
-        }
-</style>
 </head>
 <body>
 
     <div class="head">
-
         <div class="logo">
             <a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
-
         </div>
+        
         <nav class="navbar">
             {% if user.is_authenticated %}
                 {% if user.is_staff %}
@@ -74,11 +50,20 @@
       </nav>
     </div>
 
-    <div class="container table-container"> 
+
+
+    <div class="table"> 
+        <br><br><br><br><br><br>
+        <form method="GET" action="{% url 'home' %}" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos" aria-label="Buscar" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <br><br>
         <p></p>
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Código</th>
                     <th>Nombre</th>
                     <th>Imagen</th>
@@ -94,12 +79,12 @@
                             <th>Comprar</th>
                         {% endif %}
                     {% endif %}
-
                 </tr>
             </thead>
             <tbody>
                 {% for prod in productitos %}
                 <tr>
+                    <td></td>
                     <td>{{ prod.idProducto }}</td>
                     <td>{{ prod.nombreProducto }}</td>
 
@@ -114,7 +99,7 @@
                     {% endif %}
 
                     <td>{{ prod.categoria }}</td>
-                    <td>{{ prod.descripción }}</td>
+                    <td>{{ prod.descripcion }}</td>
                     <td>{{ prod.precio }}</td>
 
                     {% if user.is_authenticated %}
@@ -131,8 +116,6 @@
                             <a href="#" class="btn btn-danger">No tiene permiso</a>
                         </td>
                     {% endif %}
-
-
                 </tr>
                 {% endfor %}
             </tbody>
@@ -141,6 +124,34 @@
             <a href="{% url 'crear' %}" class="btn btn-success">Crear Producto</a>
         {% endif %}
     </div>
+
+        <!-- Paginación -->
+        {% if productitos.has_other_pages %}
+        <div class="col-12">
+            <ul class="pagination justify-content-center">
+                {% if productitos.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productitos.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" aria-label="Anterior">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for num in productitos.paginator.page_range %}
+                <li class="page-item {% if productitos.number == num %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                {% if productitos.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productitos.next_page_number }}{% if query %}&q={{ query }}{% endif %}" aria-label="Siguiente">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
     <footer class="pie-pagina">
         <div class="grupo-1">
             <div class="box">

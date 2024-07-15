@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Compras</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9f7ef;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h3 {
+            color: #28a745;
+        }
+        h6 {
+            color: #6c757d;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .table th {
+            background-color: #ff9800;
+            color: white;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(255, 152, 0, 0.1);
+        }
+        .table-striped tbody tr:nth-of-type(even) {
+            background-color: rgba(255, 152, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Detalle de todas las compras de {{ request.user.username }}</h3> <!--es un titulo que muestra el detalle de todas las compras del usuario actual-->
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Número de Boleta</th> <!--mostramos los detalles de la boleta-->
+                    <th>Fecha de Compra</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for boleta in boletas %} <!--for para recorrer cada boleta en la lista boletas-->
+                <tr>
+                    <td>{{ boleta.id_boleta }}</td>>
+                    <td>{{ boleta.fechaCompra }}</td>  
+                    <td>{{ boleta.total }}</td> 
+                </tr>
+                {% empty %} <!--si no hay, se muestra un mensaje en una fila es decir lo que dice abajo-->
+                <tr>
+                    <td colspan="3">No se encontraron compras.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-right"><h6>Número de Compras:</h6></td>
+                    <td><h6>{{ num_compras }}</h6></td> <!--aca llamamos el numero de compras que ha hecho el usuario-->
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right"><h6>Total Compras:</h6></td>
+                    <td><h6>{{ total }}</h6></td> <!--aca esta el total de compras que ha hecho el usuario-->
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}
